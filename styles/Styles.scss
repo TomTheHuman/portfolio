@@ -1,0 +1,149 @@
+/*
+ * Global style sheet intended to be imported in all sub-component
+ * Sass modules. Includes global variables and classes to better enforce
+ * styles and standards
+/*
+
+/* Imports */
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=DM+Sans');
+
+/* Colors */
+
+$ui: #284B63; // Matches MuiTheme "primary"
+
+// White
+$white-opac-1: rgba(255, 255, 255, 0.1);
+$white-opac-2: rgba(255, 255, 255, 0.2);
+$white-opac-3: rgba(255, 255, 255, 0.3);
+$white-opac-4: rgba(255, 255, 255, 0.4);
+$white-opac-5: rgba(255, 255, 255, 0.5);
+$white-opac-6: rgba(255, 255, 255, 0.6);
+$white-opac-7: rgba(255, 255, 255, 0.7);
+$white-opac-8: rgba(255, 255, 255, 0.8);
+$white-opac-9: rgba(255, 255, 255, 0.9);
+
+// Black
+$black-opac-1: rgba(0, 0, 0, 0.1);
+$black-opac-2: rgba(0, 0, 0, 0.2);
+$black-opac-3: rgba(0, 0, 0, 0.3);
+$black-opac-4: rgba(0, 0, 0, 0.4);
+$black-opac-5: rgba(0, 0, 0, 0.5);
+$black-opac-6: rgba(0, 0, 0, 0.6);
+$black-opac-7: rgba(0, 0, 0, 0.7);
+$black-opac-8: rgba(0, 0, 0, 0.8);
+$black-opac-9: rgba(0, 0, 0, 0.9);
+
+/* Spacing */
+
+$space-small: 4px;
+$space-medium: 8px;
+$space-large: 16px;
+$space-larger: 24px;
+$space-huge: 32px;
+
+/* Border Radius */
+
+$br-small: 4px;
+$br-medium: 8px;
+$br-large: 16px;
+
+/* Text Styles */
+
+.head1 {
+  font-weight: 900;
+  font-size: 4rem;
+}
+
+.head2 {
+  font-weight: 600;
+  font-size: 3rem;
+}
+
+.head3 {
+  font-weight: 300;
+  font-size: 1.6rem;
+}
+
+.body1 {
+  font-weight: 100;
+  font-size: 1.4rem;
+}
+
+.body2 {
+  font-weight: 100;
+  font-size: 1.2rem;
+}
+
+/* Container Styles */
+
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  padding: $space-huge;
+  row-gap: $space-large;
+}
+
+.title {
+  margin-bottom: $space-small;
+}
+
+/* Input Styles */
+
+.button {
+  border-radius: $br-medium;
+  font-size: 1rem;
+  padding: $space-small $space-large;
+  white-space: nowrap;
+}
+
+/* Mobile Styles */
+
+@media only screen and (max-width: 720px) {
+
+  /* Text Styles */
+
+  .head1 {
+    font-weight: 900;
+    font-size: 4rem;
+  }
+
+  .head2 {
+    font-weight: 600;
+    font-size: 2rem;
+  }
+
+  .head3 {
+    font-weight: 300;
+    font-size: 1.4rem;
+  }
+
+  .body1 {
+    font-weight: 100;
+    font-size: 1.2rem;
+  }
+
+  .body2 {
+    font-weight: 100;
+    font-size: 1rem;
+  }
+
+  /* Input Styles */
+
+  .button {
+    border-radius: $br-medium;
+    font-size: 0.85rem;
+    padding: $space-small $space-medium;
+  }
+
+}

@@ -1,0 +1,13 @@
+@import '/styles/Styles.scss';
+
+/* Landing Page Styles */
+
+#landing {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Mobile Styles */
+
+@media only screen and (max-width: 720px) {}
