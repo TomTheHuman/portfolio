@@ -1,20 +1,23 @@
-import { Box } from '@mui/material';
 import React from 'react';
 
 // Internal Imports
-import sx from '../styles/components/Landing.module.scss';
+import { skills } from '../utils/Info';
+import sx from '../styles/pages/Skills.module.scss';
 
 /**
- * Skills page component, rendering content to be displayed when users
- * first visit the site
- * @returns {JSX.Element} landing page component
+ * Skills page component, emphasizing my most used technical skills
+ * and listing all technologies I have experience with
+ * @returns {JSX.Element} skills page component
  */
 export default function Skills(): JSX.Element {
+  const { text, emphasized, other } = skills;
+
   return (
-    <Box className={sx.container}>
-      <Box className={sx.content}>
-        <h1 className={sx.head1}>Skills</h1>
-      </Box>
-    </Box>
+    <div className={sx.root}>
+      <h2 className={sx.head2}>{text.title}</h2>
+      <div className={sx.body}>
+        <p className={sx.body1}>{text.body}</p>
+      </div>
+    </div>
   );
 }

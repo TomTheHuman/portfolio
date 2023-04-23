@@ -19,7 +19,9 @@ export default function Layout(props: ILayoutProps): JSX.Element {
     <div className={sx.root}>
       <div className={sx.body}>
         <Header />
-        {children}
+        <div className={sx.container}>
+          {children}
+        </div>
       </div>
     </div>
   );
