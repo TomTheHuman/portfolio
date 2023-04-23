@@ -1,0 +1,39 @@
+@import '/styles/Styles.scss';
+
+/* Transition */
+
+$transition: ease-out 200ms;
+
+/* Root Styles */
+
+.root {
+  color: $ui-white;
+  font-weight: normal;
+  border: solid 1px $ui-yellow;
+  border-radius: $br-small;
+  background: none;
+  padding: $space-medium;
+
+  transition: $transition;
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+
+  &:hover {
+    box-shadow: inset 200px 0 0 0 $ui-yellow;
+    color: $ui-main;
+  }
+}
+
+/* Size Styles */
+
+#small {
+  font-size: 0.75rem;
+}
+
+#medium {
+  font-size: 0.85rem;
+}
+
+#large {
+  font-size: 1rem;
+}

@@ -8,6 +8,7 @@
   min-width: 0;
   min-height: 0;
   display: flex;
+  align-items: center;
   gap: $space-large;
 }
 
@@ -28,6 +29,36 @@
 
 #subtitle {
   margin-top: $space-small;
+}
+
+/* Graphic Styles */
+
+#graphic {
+  position: relative;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+}
+
+// Positions top shape
+#top {
+  left: 60%;
+  top: -25%;
+}
+
+// Positions bottom shape
+#bottom {
+  left: 10%;
+  top: 90%;
+}
+
+#photo {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 /* Mobile Styles */

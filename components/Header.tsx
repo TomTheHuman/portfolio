@@ -1,14 +1,15 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 // External Imports
 import { Divider } from '@mui/material';
+import { useRouter } from 'next/router';
 
 // Internal Imports
 import { site } from 'utils/Info';
 import Link from 'next/link';
 import { ILink } from 'utils/IInfo';
-import { useRouter } from 'next/router';
 import sx from '../styles/components/Header.module.scss';
+import Button from './Button';
 
 /**
  * Header bar including site logo, title, and navigation elements
@@ -38,12 +39,10 @@ export default function Header(): JSX.Element {
             </p>
           ))}
         </div>
-        <button
-          type="button"
-          onClick={handleNavigate}
-        >
-          {emphasized.label}
-        </button>
+        <Button
+          label={emphasized.label}
+          handleClick={handleNavigate}
+        />
       </div>
       <Divider />
     </div>
