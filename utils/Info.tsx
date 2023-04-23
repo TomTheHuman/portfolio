@@ -53,17 +53,17 @@ export const landing: ILanding = {
       top: {
         style: 'circle',
         color: colors.yellow,
-        size: '160px',
+        size: '120px',
       },
       bottom: {
         style: 'circle',
         color: colors.red,
-        size: '120px',
+        size: '90px',
       },
     },
     image: {
       shape: 'circle',
-      path: '',
+      path: '/photos/plant-tom.png',
       label: 'Picture of Thomas',
     },
   },
