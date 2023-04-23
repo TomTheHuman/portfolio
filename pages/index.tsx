@@ -1,10 +1,8 @@
-import { Box } from '@mui/material';
 import React from 'react';
 
 // Internal Imports
-import Head from 'next/head';
-import { site } from '../utils/Info';
-import sx from '../styles/components/Landing.module.scss';
+import { landing } from '../utils/Info';
+import sx from '../styles/pages/Landing.module.scss';
 
 /**
  * Landing page component, rendering content to be displayed when users
@@ -12,20 +10,26 @@ import sx from '../styles/components/Landing.module.scss';
  * @returns {JSX.Element} landing page component
  */
 export default function Landing(): JSX.Element {
+  const { text, graphic } = landing;
+
   return (
-    <Box className={sx.container}>
-      <Head>
-        <title>{site.config.title}</title>
-        <meta name="description" content={site.config.description} />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Box
-        id={sx.landing}
-        className={sx.content}
-      >
-        <h1 className={sx.head1}>Title</h1>
-        <h2 className={sx.head3}>Subtitle</h2>
-      </Box>
-    </Box>
+    <div className={sx.root}>
+      <div id={sx.text}>
+        <h2 className={sx.head2}>{text.title}</h2>
+        <h1
+          id={sx.name}
+          className={sx.head1}
+        >
+          {text.name}
+        </h1>
+        <p
+          id={sx.subtitle}
+          className={sx.body1}
+        >
+          {text.subtitle}
+        </p>
+      </div>
+      <div id={sx.graphic} />
+    </div>
   );
 }

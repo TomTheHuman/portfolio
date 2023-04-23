@@ -12,14 +12,14 @@ import sx from '../styles/components/Landing.module.scss';
  */
 export default function Landing(): JSX.Element {
   return (
-    <Box className={sx.container}>
-      <Box
+    <div className={sx.container}>
+      <div
         id={sx.landing}
         className={sx.content}
       >
         <h1 className={sx.head1}>Title</h1>
         <h2 className={sx.head3}>Subtitle</h2>
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }

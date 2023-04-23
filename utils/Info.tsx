@@ -75,10 +75,10 @@ export const about: IAbout = {
     body: `For over 3 years I’ve been developing high performance web applications with 
     beautiful user interfaces, delivering valuable features and seamless user experiences. 
     React, TypeScript, Python and Django are my bread and butter, but I’m always excited to 
-    learn new languages, libraries and frameworks.\n
+    learn new languages, libraries and frameworks.<br>
     I wasn’t always a software engineer. My career started in IT, working from a technical 
     support associate to technical lead for one of California’s largest beverage distributors. 
-    During that time, I gained hands on experience with technical project management.\n
+    During that time, I gained hands on experience with technical project management.<br>
     One characteristic that has remained constant throughout my career is finding ways to 
     make people’s lives easier and more efficient by leveraging my technical knowledge.
     `,
@@ -111,8 +111,9 @@ export const skills: ISkills = {
   text: {
     title: "I've learned some things.",
     body: `I’ve always had a passion for UI/UX design. I first started my academic career 
-    pursuing an art degree, but later changed course for computer science. Pairing my creative 
-    eye with my technical know-how is something I take pride in.`,
+    pursuing an art degree, but later changed course for computer science. I take pride in 
+    pairing my creative eye with my technical know-how. Along the way I've developed a set
+    of skills that have allowed me to build applications through every part of the stack.`,
     other: 'Here are some other technologies I have experience with.',
   },
   emphasized: [
@@ -255,7 +256,7 @@ export const work: IWork = {
       description: `Satellite monitoring and commanding interface used in real time by
       Astranis mission operations team. I led efforts to architect a fully refactored
       version 2 of this web application including new infrastructure such as React Router,
-      Recoil state management, as well as new guidelines for strict typing.\n
+      Recoil state management, as well as new guidelines for strict typing.<br>
       Beyond the architecture, I was also the lead developer of our commanding sessions UI,
       allowing the operations team to view and command multiple satellites seamlessly and
       securely.`,
@@ -292,11 +293,11 @@ export const work: IWork = {
       key: 'cesium-big-board',
       title: 'Cesium Big Board',
       description: `What do you do when you get asked to create a dashboard that looks
-      "freaking awesome"? You do exactly that.\n
+      "freaking awesome"? You do exactly that.<br>
       I developed this internal marketing tool using CesiumJS and Resium to visualize current 
       and future satellite projects (to scale), including Earth-surface network beam patterns. 
       Using 3D models of our products, and data provided by our network calculations team, I was
-      able to create a beautifully animated interface demonstrating our satellite fleet.\n
+      able to create a beautifully animated interface demonstrating our satellite fleet.<br>
       This was my first time working with 3D graphics in JavaScript. It's a project I won't soon
       forget.`,
       technologies: [

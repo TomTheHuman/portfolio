@@ -1,20 +1,26 @@
-import { Box } from '@mui/material';
 import React from 'react';
 
 // Internal Imports
-import sx from '../styles/components/Landing.module.scss';
+import { about } from '../utils/Info';
+import sx from '../styles/pages/About.module.scss';
 
 /**
- * About page component, rendering content to be displayed when users
- * first visit the site
- * @returns {JSX.Element} landing page component
+ * About page component, displaying a brief self-introduction and
+ * any relevant personal information
+ * @returns {JSX.Element} about page component
  */
 export default function About(): JSX.Element {
+  const { text, shapes } = about;
+  const paragraphs = text.body?.split('<br>');
+
   return (
-    <Box className={sx.container}>
-      <Box className={sx.content}>
-        <h1 className={sx.head1}>About</h1>
-      </Box>
-    </Box>
+    <div className={sx.root}>
+      <h2 className={sx.head2}>{text.title}</h2>
+      <div className={sx.body}>
+        {paragraphs?.map((paragraph, i) => (
+          <p key={`paragraph${i}`} className={sx.body1}>{paragraph}</p>
+        ))}
+      </div>
+    </div>
   );
 }
