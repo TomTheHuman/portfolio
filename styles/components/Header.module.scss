@@ -3,16 +3,19 @@
 /* Root Styles */
 
 .root {
-  top: 0;
-  left: 0;
   width: 100%;
-  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.header {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: $space-medium;
-  box-sizing: border-box;
-  z-index: 10;
+  padding: $space-small 0px;
 }
 
 /* Title Styles */
@@ -26,19 +29,11 @@
   gap: $space-medium;
 }
 
-#siteLogo {
-  cursor: pointer;
-
-  svg {
-    fill: black;
-  }
-}
-
 /* Navigation Styles */
 
-#nav {
+#primary {
   display: flex;
-  gap: $space-medium;
+  gap: $space-large;
 }
 
 /* Mobile Styles */
