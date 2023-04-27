@@ -17,6 +17,7 @@ function MyApp({ Component, pageProps }) {
       <CssBaseline />
       <Head>
         <title>{site.config.title}</title>
+        <meta name="theme-color" content="#273140" />
         <meta name="description" content={site.config.description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
