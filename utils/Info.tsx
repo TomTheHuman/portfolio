@@ -2,7 +2,7 @@ import {
   IAbout, IColors, IContact, ILanding, ISite, ISkills, IWork,
 } from './IInfo';
 
-export const shapeThickness = '36px';
+export const shapeThickness = '24px';
 
 export const colors: IColors = {
   yellow: '#FFCC48',
@@ -121,7 +121,7 @@ export const skills: ISkills = {
       key: 'react',
       label: 'ReactJS',
       logo: {
-        path: '',
+        path: '/icons/react.png',
         label: 'ReactJS logo',
       },
       percentage: 95,
@@ -130,7 +130,7 @@ export const skills: ISkills = {
       key: 'python',
       label: 'Python',
       logo: {
-        path: '',
+        path: '/icons/python.png',
         label: 'Python logo',
       },
       percentage: 90,
@@ -139,7 +139,7 @@ export const skills: ISkills = {
       key: 'postrgres',
       label: 'PostgreSQL',
       logo: {
-        path: '',
+        path: '/icons/postgresql.png',
         label: 'PostgreSQL logo',
       },
       percentage: 88,
@@ -148,7 +148,7 @@ export const skills: ISkills = {
       key: 'django',
       label: 'Django',
       logo: {
-        path: '',
+        path: '/icons/django.png',
         label: 'Django logo',
       },
       percentage: 80,
@@ -157,7 +157,7 @@ export const skills: ISkills = {
       key: 'typescript',
       label: 'TypeScript',
       logo: {
-        path: '',
+        path: '/icons/typescript.png',
         label: 'TypeScript logo',
       },
       percentage: 72,
@@ -253,22 +253,25 @@ export const work: IWork = {
     {
       key: 'themis-v2',
       title: 'Themis v2',
-      description: `Satellite monitoring and commanding interface used in real time by
-      Astranis mission operations team. I led efforts to architect a fully refactored
-      version 2 of this web application including new infrastructure such as React Router,
-      Recoil state management, as well as new guidelines for strict typing.<br>
-      Beyond the architecture, I was also the lead developer of our commanding sessions UI,
-      allowing the operations team to view and command multiple satellites seamlessly and
-      securely.`,
+      description: `Themis v2 was a full refactor of our ground-software web application; a
+      tool used by our mission operations team to command and monitor our fleet of satellites and
+      simulation testbeds. I had the unique opportunity to lead this project, including working with
+      stakeholders and other full stack developers to establish our user interface design system, 
+      as well as architect the application from the ground up for better performance and maintainability.<br>
+      Part of this project was creating the new commanding sessions user interface, allowing for multi-satellite
+      commanding.`,
+      image: {
+        key: 'command-v2',
+        path: '/projects/commanding-v2-ui.gif',
+        label: 'Themis v2 Commanding UI',
+      },
       technologies: [
         'ReactJS',
         'TypeScript',
         'Recoil',
         'React Router',
-        'Axios',
         'Python',
         'Django',
-        'Django REST Framework',
         'SocketIO',
         'PostgreSQL',
         'TimescaleDB',
@@ -278,10 +281,15 @@ export const work: IWork = {
     {
       key: 'brown-bear-epoxy',
       title: 'Brown Bear Epoxy',
-      description: `Customer website for San Francisco based epoxy countertop creator, 
-      Brown Bear Epoxy. I worked with the owner to develop a customer facing site including
-      their offered services and contact information.`,
+      description: `Brown Bear Epoxy is an up-and-coming epoxy countertop contractor based in
+      San Francisco. I had the pleasure of working with this company to create a business store-front intended
+      to attact customers and advertise their offered services.`,
       link: 'https://kjc-epoxy.vercel.app',
+      image: {
+        key: 'brown-bear',
+        path: '/projects/brown-bear.png',
+        label: 'Brown Bear Epoxy home page',
+      },
       technologies: [
         'ReactJS',
         'NextJS',
@@ -300,6 +308,11 @@ export const work: IWork = {
       able to create a beautifully animated interface demonstrating our satellite fleet.<br>
       This was my first time working with 3D graphics in JavaScript. It's a project I won't soon
       forget.`,
+      image: {
+        key: 'big-board',
+        path: '/projects/big-board.gif',
+        label: 'Themis Big Board with Cesium Globe',
+      },
       technologies: [
         'ReactJS',
         'TypeScript',
@@ -315,7 +328,7 @@ export const work: IWork = {
 
 export const contact: IContact = {
   text: {
-    title: "Like what you see? Let's chat!",
+    title: "Let's connect!",
   },
   graphic: {
     shapes: {
@@ -351,7 +364,7 @@ export const contact: IContact = {
     },
     image: {
       shape: 'rectangle',
-      path: '',
+      path: '/photos/pro-tom.png',
       label: 'Picture of Thomas',
     },
   },
@@ -361,7 +374,7 @@ export const contact: IContact = {
       label: 'GitHub',
       href: 'https://www.github.com/TomTheHuman',
       logo: {
-        path: '',
+        path: '/icons/github.png',
         label: 'GitHub logo',
       },
     },
@@ -370,7 +383,7 @@ export const contact: IContact = {
       label: 'LinkedIn',
       href: 'https://www.linkedin.com/in/ThomasLShaw',
       logo: {
-        path: '',
+        path: '/icons/linkedin.png',
         label: 'LinkedIn logo',
       },
     },
@@ -380,7 +393,7 @@ export const contact: IContact = {
       value: 'thomas@tomthehuman.com',
       href: 'mailto:thomas@tomthehuman.com',
       logo: {
-        path: '',
+        path: '/icons/email.png',
         label: 'Email icon',
       },
     }, {
@@ -389,7 +402,7 @@ export const contact: IContact = {
       value: '(707) 843-1047',
       href: 'tel:+17078431047',
       logo: {
-        path: '',
+        path: '/icons/phone.png',
         label: 'Phone icon',
       },
     },

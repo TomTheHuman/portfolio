@@ -9,14 +9,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat');
 
 /* View */
-$max-width: 900px;
+$max-width: 1000px;
+$mob-width: 720px;
 
 /* Colors */
 
-$ui-main: #284B63; // Matches MuiTheme "primary"
+$ui-main: #273140; // Matches MuiTheme "primary"
 $ui-yellow: #FFCC48;
 $ui-white: #FFFFFF;
-$ui-navy: #284B63;
+$ui-navy: #273140;
 $ui-red: #E63946;
 
 // Transparent
@@ -59,6 +60,13 @@ $br-medium: 8px;
 $br-large: 16px;
 
 /* Text Styles */
+.head1,
+.head2,
+.head3,
+.body1,
+.body2 {
+  user-select: none;
+}
 
 // Intended to use with h1
 .head1 {
@@ -142,18 +150,24 @@ $br-large: 16px;
 
 /* Mobile Styles */
 
-@media only screen and (max-width: $max-width) {
+@media only screen and (max-width: $mob-width) {
+
+  .container {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: $space-small;
+  }
 
   /* Text Styles */
 
   .head1 {
     font-weight: 900;
-    font-size: 4rem;
+    font-size: 2rem;
   }
 
   .head2 {
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
   .head3 {
@@ -163,12 +177,12 @@ $br-large: 16px;
 
   .body1 {
     font-weight: 100;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .body2 {
     font-weight: 100;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   /* Input Styles */

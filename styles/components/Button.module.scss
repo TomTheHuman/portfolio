@@ -2,7 +2,7 @@
 
 /* Transition */
 
-$transition: ease-out 200ms;
+$transition: all ease-out 200ms;
 
 /* Root Styles */
 
@@ -13,6 +13,7 @@ $transition: ease-out 200ms;
   border-radius: $br-small;
   background: none;
   padding: $space-medium;
+  white-space: nowrap;
 
   transition: $transition;
   -webkit-transition: $transition;

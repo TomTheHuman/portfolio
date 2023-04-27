@@ -4,31 +4,9 @@ import React from 'react';
 import Image from 'next/image';
 
 // Internal Imports
-import { IShape } from 'utils/IInfo';
+import { Shape } from 'components/Shape';
 import { landing } from '../utils/Info';
 import sx from '../styles/pages/Landing.module.scss';
-
-interface ICircleProps {
-  id: string;
-  config: IShape;
-}
-
-function Circle(props: ICircleProps): JSX.Element {
-  const { id, config } = props;
-  const { size, color } = config;
-
-  return (
-    <div
-      id={id}
-      className={sx.circle}
-      style={{
-        width: size,
-        height: size,
-        backgroundColor: color,
-      }}
-    />
-  );
-}
 
 /**
  * Landing page component, rendering content to be displayed when users
@@ -42,7 +20,13 @@ export default function Landing(): JSX.Element {
   return (
     <div className={sx.root}>
       <div id={sx.text}>
-        <h2 className={sx.head2}>{text.title}</h2>
+        <h2
+          id={sx.title}
+          className={sx.head2}
+        >
+          {text.title}
+
+        </h2>
         <h1
           id={sx.name}
           className={sx.head1}
@@ -58,9 +42,10 @@ export default function Landing(): JSX.Element {
       </div>
       <div id={sx.graphic}>
         <div id={sx.photo}>
-          <Circle
+          <Shape
             id={sx.top}
-            config={shapes.top}
+            className={sx.circle}
+            shape={shapes.top}
           />
           <Image
             width="100%"
@@ -68,9 +53,10 @@ export default function Landing(): JSX.Element {
             src={graphic.image?.path}
             layout="responsive"
           />
-          <Circle
+          <Shape
             id={sx.bottom}
-            config={shapes.bottom}
+            className={sx.circle}
+            shape={shapes.bottom}
           />
         </div>
       </div>

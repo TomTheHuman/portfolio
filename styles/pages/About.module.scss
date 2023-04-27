@@ -18,6 +18,35 @@
   gap: $space-medium;
 }
 
+/* Graphic Styles */
+
+#graphic {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: $space-large;
+  margin-top: $space-large;
+}
+
+#first {
+  flex: 1 1 70%;
+}
+
+#fourth {
+  flex: 1 1 10%;
+}
+
 /* Mobile Styles */
 
-@media only screen and (max-width: $max-width) {}
+@media only screen and (max-width: $mob-width) {
+  .root {
+    height: 100%;
+    padding: 10vh 0;
+    box-sizing: border-box;
+  }
+
+  #graphic {
+    gap: $space-medium;
+  }
+}

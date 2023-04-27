@@ -37,6 +37,8 @@
         ]
       }
     ],
+    "jsx-a11y/no-static-element-interactions": 0,
+    "react/jsx-key": 0,
     "react/require-default-props": 0,
     "react/prop-types": 0,
     "react/no-array-index-key": 0,
