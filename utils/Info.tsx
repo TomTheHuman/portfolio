@@ -13,8 +13,8 @@ export const colors: IColors = {
 
 export const site: ISite = {
   config: {
-    title: 'Thomas Shaw',
-    description: 'Custom NextJS Template',
+    title: 'Thomas Shaw | Portfolio',
+    description: '🚀 My Development Portfolio',
   },
   navigation: {
     primary: [
