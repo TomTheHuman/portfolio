@@ -53,6 +53,7 @@ export default function Landing(): JSX.Element {
             src={graphic.image?.path}
             layout="responsive"
             loading="eager"
+            priority
           />
           <Shape
             id={sx.bottom}

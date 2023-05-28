@@ -45,6 +45,7 @@ function LinkCard(props: ILinkCardProps): JSX.Element {
           height="24px"
           layout="responsive"
           loading="eager"
+          priority
         />
       </div>
       <div
@@ -103,6 +104,8 @@ export default function Contact(): JSX.Element {
             height="100%"
             src={graphic.image?.path}
             layout="responsive"
+            loading="eager"
+            priority
           />
         </div>
         <div className={sx.column}>
