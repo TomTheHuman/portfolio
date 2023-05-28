@@ -218,7 +218,9 @@ export default function Work(): JSX.Element {
               width="240px"
               height="140px"
               layout="responsive"
+              loading="eager"
               unoptimized
+              priority
             />
           </div>
           <div className={sx.row}>
