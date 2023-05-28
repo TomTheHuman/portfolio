@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 
 // Internal Imports
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { contact } from '../utils/Info';
 import sx from '../styles/pages/Contact.module.scss';
 import { IContactLink } from '../utils/IInfo';
@@ -17,7 +16,6 @@ function LinkCard(props: ILinkCardProps): JSX.Element {
   const [hover, setHover] = useState<boolean>(false);
   const [textWidth, setTextWidth] = useState<number>(0);
   const textRef = useRef<HTMLParagraphElement>(null);
-  const router = useRouter();
 
   useEffect(() => {
     if (textRef.current) {
@@ -46,6 +44,7 @@ function LinkCard(props: ILinkCardProps): JSX.Element {
           width="24px"
           height="24px"
           layout="responsive"
+          loading="eager"
         />
       </div>
       <div
