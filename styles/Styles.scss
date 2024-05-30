@@ -5,8 +5,7 @@
 /*
 
 /* Imports */
-@import url('https://fonts.googleapis.com/css2?family=Lexend');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat');
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 /* View */
 $max-width: 1000px;
@@ -14,7 +13,7 @@ $mob-width: 720px;
 
 /* Colors */
 
-$ui-main: #273140; // Matches MuiTheme "primary"
+$ui-main: #273140;
 $ui-yellow: #FFCC48;
 $ui-white: #FFFFFF;
 $ui-navy: #273140;
@@ -70,36 +69,47 @@ $br-large: 16px;
 
 // Intended to use with h1
 .head1 {
-  color: $ui-white;
-  font-family: 'Lexend', sans-serif;
-  font-weight: 900;
-  font-size: 2.2rem;
+  font-family: 'Space Mono', sans-serif;
+  font-weight: 700;
+  font-size: 6rem;
   line-height: 1;
-  letter-spacing: 0.05em;
 }
 
 // Intended to use with h2
 .head2 {
-  color: $ui-yellow;
-  font-family: 'Lexend', sans-serif;
-  font-weight: 600;
+  font-family: 'Silkscreen', sans-serif;
+  font-weight: 700;
   font-size: 2rem;
   line-height: 1;
-  letter-spacing: 0.05em;
 }
 
 // Intended to use with h3
 .head3 {
-  font-family: 'Lexend', sans-serif;
-  font-weight: 300;
+  font-family: 'Silkscreen', sans-serif;
+  font-weight: 400;
   font-size: 1.8rem;
   line-height: 1;
-  letter-spacing: 0.05em;
+}
+
+// Intended to use with p
+.subtitle1 {
+  font-family: 'Space Mono', monospace;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+// Intended to use with p
+.subtitle2 {
+  font-family: 'Space Mono', monospace;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4;
 }
 
 // Intended to use with p
 .body1 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Space Mono', monospace;
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.4;
@@ -107,7 +117,7 @@ $br-large: 16px;
 
 // Intended to use with p
 .body2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Space Mono', monospace;
   font-weight: 100;
   font-size: 0.8rem;
   line-height: 1.4;
@@ -124,6 +134,7 @@ $br-large: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .content {

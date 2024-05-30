@@ -1,3 +1,15 @@
 {
-  "eslint.lintTask.enable": true
+  "eslint.lintTask.enable": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/*.scss": false,  // Ensure it's not set to true
+    "**/*.css": false    // Ensure it's not set to true
+  },
+  "search.exclude": {
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/*.scss": false,  // Ensure it's not set to true
+      "**/*.css": false    // Ensure it's not set to true
+  }
 }

@@ -43,6 +43,9 @@
     "react/prop-types": 0,
     "react/no-array-index-key": 0,
     "react/jsx-props-no-spreading": 0,
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "react/no-unknown-property": 0,
+    "react/jsx-no-useless-fragment": 0,
+    "react/function-component-definition": 0
   }
 }

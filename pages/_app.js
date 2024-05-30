@@ -1,30 +1,31 @@
 import React from 'react';
 
 // External Imports
-import { ThemeProvider } from '@mui/material';
-import CssBaseline from '@mui/material/CssBaseline';
 import Head from 'next/head';
+import { FluentProvider, webLightTheme } from '@fluentui/react-components';
+import { RecoilRoot } from 'recoil';
 
 // Internal Imports
 import '../styles/globals.css';
-import { site } from '../utils/Info';
-import theme from '../styles/MuiTheme';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
+import Background from '../components/Background/Background';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <FluentProvider theme={webLightTheme}>
       <Head>
-        <title>{site.config.title}</title>
-        <meta name="theme-color" content="#273140" />
-        <meta name="description" content={site.config.description} />
+        <title>Thomas Shaw</title>
+        {/* <meta name="theme-color" content="#273140" /> */}
+        <meta name="description" content="Web Development Portfolio of Thomas Shaw" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ThemeProvider>
+      <RecoilRoot>
+        <Background />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </RecoilRoot>
+    </FluentProvider>
   );
 }
 
