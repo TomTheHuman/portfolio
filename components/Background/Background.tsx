@@ -1,5 +1,5 @@
 import React, {
-  Suspense, useCallback, useEffect, useMemo, useRef, useState,
+  Suspense, useEffect, useMemo, useRef, useState,
 } from 'react';
 
 // External Imports
@@ -9,13 +9,8 @@ import {
 } from '@react-three/fiber';
 
 // Internal Imports
-import {
-  useRecoilCallback,
-  useRecoilState, useRecoilValue,
-  useSetRecoilState,
-} from 'recoil';
+import { useRecoilValue } from 'recoil';
 import sx from './Background.module.scss';
-import colorPalette from '../../utils/Palette';
 import { themePaletteState } from '../../utils/State';
 
 interface IGridCellProps {
@@ -32,7 +27,6 @@ function Box(props: IGridCellProps): React.ReactElement {
   const matRef = useRef<THREE.MeshStandardMaterial>(null);
   const palette = useRecoilValue(themePaletteState);
   const lastColorRef = useRef<string>(palette.secondary);
-  const lightRef = useRef<THREE.PointLight>(null);
 
   const heightBuffer = 1.1;
 
@@ -57,7 +51,7 @@ function Box(props: IGridCellProps): React.ReactElement {
     return () => clearInterval(interval);
   }, []);
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     if (ref.current) {
       ref.current.rotation.set(
         (data.rX += 0.001),
@@ -96,21 +90,10 @@ function Box(props: IGridCellProps): React.ReactElement {
 function Boxes(): React.ReactElement {
   const palette = useRecoilValue(themePaletteState);
   const {
-    viewport, camera, size, gl,
+    gl,
   } = useThree();
   const [bgColor, setBgColor] = useState<THREE.Color>(new THREE.Color(palette.primary));
   const currBgColor = useRef<THREE.Color>(bgColor);
-
-  const radius = 5;
-  const boxGap = 0.1;
-  const boxWidth = 0.99;
-  const totalBoxSize = boxGap + boxWidth;
-  const numBoxesWidth = 100;
-
-  const viewportWidth = numBoxesWidth * totalBoxSize;
-  const aspectRatio = size.width / size.height;
-  const viewportHeight = viewportWidth / aspectRatio;
-  const numBoxesHeight = Math.floor(viewportHeight / totalBoxSize);
 
   const geom = useMemo(() => new THREE.BoxGeometry(1, 1, 1), []);
 
@@ -152,7 +135,6 @@ function Boxes(): React.ReactElement {
 
 function ThreeCanvas(): React.ReactElement {
   // const sp = useRecoilValue(scrollPercentState);
-  const palette = useRecoilValue(themePaletteState);
 
   return (
     <Canvas

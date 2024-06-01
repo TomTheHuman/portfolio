@@ -2,7 +2,6 @@ import React from 'react';
 
 import { about } from '../utils/Data';
 import sx from '../styles/About.module.scss';
-import { cn } from '../utils/Helpers';
 
 export default function About(): JSX.Element {
   return (

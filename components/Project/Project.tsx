@@ -1,11 +1,9 @@
-import React, {
-  useRef, useState,
-} from 'react';
+import React, { useState } from 'react';
 
 // External Imports
 
 // Internal Imports
-import { ImageShadowRegular, LinkRegular, OpenRegular } from '@fluentui/react-icons';
+import { ImageShadowRegular, OpenRegular } from '@fluentui/react-icons';
 import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
 import sx from './Project.module.scss';
@@ -22,8 +20,10 @@ interface IProjectProps {
 }
 
 const Thumbnail = ({ thumbnails }: { thumbnails: string[] }): React.ReactElement => {
-  const [hover, setHover] = useState<boolean>(false);
   const [thumbIndex, setThumbIndex] = useState<number>(0);
+  if (thumbnails === null) {
+    setThumbIndex(0);
+  }
 
   const palette = useRecoilValue(themePaletteState);
 
@@ -59,8 +59,6 @@ function Project(props: IProjectProps): React.ReactElement {
   } = props;
 
   const palette = useRecoilValue(themePaletteState);
-  const intRef = useRef<NodeJS.Timeout>(null);
-  const [thumbIndex, setThumbIndex] = useState<number>(0);
 
   return (
     <div className={sx.root}>

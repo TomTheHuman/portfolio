@@ -1,7 +1,6 @@
 import mongoose, { ConnectOptions } from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI || '';
-console.log(MONGODB_URI);
+const { MONGODB_URI } = process.env;
 
 if (!MONGODB_URI) {
   throw new Error('Please define MONGODB_URI env variable');
@@ -22,6 +21,10 @@ if (!cached) {
 }
 
 async function connectToDatabase() {
+  if (!MONGODB_URI) {
+    throw new Error('Please define MONGODB_URI env variable');
+  }
+
   if (cached.conn) {
     return cached.conn;
   }

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Link from 'next/link';
-
 import sx from '../styles/index.module.scss';
 
 export default function Landing(): JSX.Element {

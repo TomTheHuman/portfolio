@@ -1,13 +1,17 @@
-import React, { ReactElement } from 'react';
+import React, { ReactNode } from 'react';
 
 export const cn = (...classNames: string[]) => classNames.join(' ');
 
 interface ConditionalProps {
   condition: boolean;
-  fallback?: ReactElement;
-  children: ReactElement | ReactElement[];
+  fallback?: ReactNode;
+  children: ReactNode;
 }
 
 export const Conditional: React.FC<ConditionalProps> = (
   { condition, fallback, children },
-) => (condition ? children : fallback || null);
+) => (
+  <>
+    {condition ? children : fallback || null}
+  </>
+);
