@@ -30,11 +30,7 @@ async function connectToDatabase() {
   }
 
   if (!cached.promise) {
-    const opts = {
-      useUnifiedTopology: true,
-    } as ConnectOptions;
-
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mong) => mong);
+    cached.promise = mongoose.connect(MONGODB_URI).then((mong) => mong);
   }
   cached.conn = await cached.promise;
   return cached.conn;
