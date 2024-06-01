@@ -19,7 +19,7 @@ export default function Projects(): JSX.Element {
   };
 
   useEffect(() => {
-    fetchProjects();
+    fetchProjects(); //
   }, []);
 
   return (
