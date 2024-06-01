@@ -1,0 +1,148 @@
+@import '../../styles/Styles.scss';
+
+.root {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.imageContainer {
+  width: calc(20% + 16px);
+
+  .imageWrapper {
+    border: 8px solid;
+    box-shadow: 0px 4px 8px $black-opac-4;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    position: relative;
+    transition: scale ease-in-out 100ms;
+
+    &:hover {
+      scale: 1.05;
+    }
+
+    .thumbnail {
+      width: auto;
+      height: 100%;
+      position: absolute;
+      z-index: 0;
+    }
+  }
+
+  .hoverOverlay {
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: $black-opac-4;
+    z-index: 1;
+    opacity: 0;
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity ease-in-out 100ms;
+
+
+    &:hover {
+      opacity: 1;
+    }
+
+    .icon {
+      font-size: 3em;
+      color: $white-opac-6;
+    }
+  }
+}
+
+.textContainer {
+  flex: 1;
+  position: relative;
+  top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.name {
+  width: fit-content;
+  padding: 8px 16px;
+
+  h3 {
+    font-size: 2.5em;
+  }
+}
+
+.detailsContainer {
+  left: -32px;
+  width: calc(100% + 16px);
+  position: relative;
+  background-color: $white-opac-5;
+  backdrop-filter: blur(8px);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0px 4px 16px $black-opac-4;
+  box-sizing: border-box;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+
+  .alignLeft, .alignRight {
+    flex: 1;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .alignRight {
+    justify-content: flex-end;
+  }
+
+  .year {
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 4px 16px;
+  }
+}
+
+.link {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+
+  .icon {
+    font-size: 1.2em;
+  }
+
+  * {
+    font-size: 1.2em;
+    font-weight: 600;
+  }
+}
+
+/**
+TODO
+  On hover:
+    shrink description field
+    scale thumbnail to ~50/60%
+    show controls, start slideshow
+  Add transition to border color change
+  Add project date to footer
+    sort by project date
+  Create thumbnails
+    Gather slideshow pics
+    Add to Azure blob store
+  Configure api to fetch projects from mongo
+  Configure app to get project data from server
+  Replace img with NextJS Ima
+**/

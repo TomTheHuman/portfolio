@@ -5,14 +5,14 @@ const colorPalette: {
   tertiary?: string;
 }[] = [
   {
-    // pink
-    primary: '#FF8CAF',
-    secondary: '#A6FF45',
-  },
-  {
     // orange
     primary: '#FFA945',
     secondary: '#7DEFFF',
+  },
+  {
+    // pink
+    primary: '#FF8CAF',
+    secondary: '#A6FF45',
   },
   {
     // sea foam

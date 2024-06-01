@@ -6,7 +6,6 @@ import React, {
 import * as THREE from 'three';
 import {
   Canvas, useThree, useFrame, MeshProps, MeshStandardMaterialProps,
-  ThreeEvent,
 } from '@react-three/fiber';
 
 // Internal Imports
@@ -32,20 +31,33 @@ function Box(props: IGridCellProps): React.ReactElement {
   const ref = useRef<THREE.Mesh>(null);
   const matRef = useRef<THREE.MeshStandardMaterial>(null);
   const palette = useRecoilValue(themePaletteState);
-  const lastColorRef = useRef<string>(palette.secondary!);
+  const lastColorRef = useRef<string>(palette.secondary);
+  const lightRef = useRef<THREE.PointLight>(null);
+
+  const heightBuffer = 1.1;
 
   const { viewport, camera } = useThree();
   const { height, width } = viewport.getCurrentViewport(camera, [0, 0, z]);
 
   const [data] = useState({
-    x: THREE.MathUtils.randFloatSpread(2), // -1 to 1
-    y: THREE.MathUtils.randFloatSpread(height), // -1 to 1
+    x: THREE.MathUtils.randFloatSpread(2),
+    y: THREE.MathUtils.randFloatSpread(height * heightBuffer) + 0.4,
     rX: Math.random() * Math.PI,
     rY: Math.random() * Math.PI,
     rZ: Math.random() * Math.PI,
   });
 
-  useFrame((state) => {
+  const [pulse, setPulse] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPulse(true);
+      setTimeout(() => setPulse(false), (60 / 105) * 1000 * 0.5);
+    }, (60 / 128) * 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useFrame((state, delta) => {
     if (ref.current) {
       ref.current.rotation.set(
         (data.rX += 0.001),
@@ -53,8 +65,11 @@ function Box(props: IGridCellProps): React.ReactElement {
         (data.rZ += 0.001),
       );
       ref.current.position.set(data.x * width, (data.y -= 0.025), z);
+
+      const scale = pulse ? 2 : 1.5;
+      ref.current.scale.lerp(new THREE.Vector3(scale, scale, scale), delta * 6);
     }
-    if (data.y < -height * 1.1) data.y = height * 1.1;
+    if (data.y < -height * 1.1) data.y = height * heightBuffer;
     if (
       matRef.current
       && lastColorRef.current
@@ -66,13 +81,15 @@ function Box(props: IGridCellProps): React.ReactElement {
   });
 
   return (
-    <mesh
-      ref={ref}
-      {...meshProps}
-      rotation={[-Math.PI / 2, 0, 0]}
-    >
-      <meshStandardMaterial ref={matRef} {...matProps} />
-    </mesh>
+    <>
+      <mesh
+        ref={ref}
+        {...meshProps}
+        rotation={[-Math.PI / 2, 0, 0]}
+      >
+        <meshStandardMaterial ref={matRef} {...matProps} />
+      </mesh>
+    </>
   );
 }
 
@@ -97,6 +114,8 @@ function Boxes(): React.ReactElement {
 
   const geom = useMemo(() => new THREE.BoxGeometry(1, 1, 1), []);
 
+  gl.setClearColor(bgColor);
+
   useEffect(() => {
     currBgColor.current = new THREE.Color(palette.primary);
   }, [palette.primary]);
@@ -114,15 +133,17 @@ function Boxes(): React.ReactElement {
 
   return (
     <>
-      {Array.from({ length: 40 }, (_, idx) => (
+      {Array.from({ length: 60 }, (_, idx) => (
         <Box
           key={idx}
-          z={(idx / 40) * 80 - 40}
+          z={(idx / 60) * 120 - 80}
           meshProps={{
             geometry: geom,
             scale: 2,
           }}
-          matProps={{}}
+          matProps={{
+            color: palette.secondary,
+          }}
         />
       ))}
     </>
@@ -161,27 +182,6 @@ function FadeIn(): React.ReactElement {
 
 /** Background Component */
 export default function Background(): React.ReactElement {
-  const setPalette = useSetRecoilState(themePaletteState);
-  const intervalRef = useRef<NodeJS.Timeout>();
-
-  const handleNextPalette = useRecoilCallback(({ snapshot }) => async () => {
-    const palette = await snapshot.getPromise(themePaletteState);
-    const last = colorPalette.length - 1;
-    const curr = colorPalette.findIndex((p) => p.primary === palette.primary);
-    const next = curr === last ? 0 : curr + 1;
-    setPalette(colorPalette[next]);
-  }, []);
-
-  useEffect(() => {
-    intervalRef.current = setInterval(handleNextPalette, 5000);
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, []);
-
   return (
     <div className={sx.root}>
       <Suspense fallback={null}>

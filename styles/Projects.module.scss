@@ -1,0 +1,7 @@
+@import './Styles.scss';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: calc(32px + 32px);
+}

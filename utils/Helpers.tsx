@@ -5,7 +5,7 @@ export const cn = (...classNames: string[]) => classNames.join(' ');
 interface ConditionalProps {
   condition: boolean;
   fallback?: ReactElement;
-  children: ReactElement;
+  children: ReactElement | ReactElement[];
 }
 
 export const Conditional: React.FC<ConditionalProps> = (

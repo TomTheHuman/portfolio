@@ -142,8 +142,10 @@ $br-large: 16px;
   max-width: $max-width;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   padding: $space-huge;
   row-gap: $space-large;
+  box-sizing: border-box;
 }
 
 .title {
