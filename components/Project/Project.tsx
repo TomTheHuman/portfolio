@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // External Imports
-
-// Internal Imports
-import { ImageShadowRegular, OpenRegular } from '@fluentui/react-icons';
 import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
 import { Spinner } from '@fluentui/react-components';
+import { ImageShadowRegular, OpenRegular } from '@fluentui/react-icons';
+
+// Internal Imports
 import sx from './Project.module.scss';
 import { AnimatedText, Conditional, cn } from '../../utils/Helpers';
 import { themePaletteState } from '../../utils/State';
@@ -25,17 +25,13 @@ interface IThumbnailProps {
   thumbnail: string;
 }
 
-const ThumbnailLoading = (): React.ReactElement => {
-  const palette = useRecoilValue(themePaletteState);
-
-  return (
-    <div className={cn(sx.imageContainer, sx.loading)}>
-      <div className={sx.imageWrapper}>
-        <Spinner className={sx.spinner} />
-      </div>
+const ThumbnailLoading = (): React.ReactElement => (
+  <div className={cn(sx.imageContainer, sx.loading)}>
+    <div className={sx.imageWrapper}>
+      <Spinner className={sx.spinner} />
     </div>
-  );
-};
+  </div>
+);
 
 const Thumbnail = (props: IThumbnailProps): React.ReactElement => {
   const { thumbnail } = props;

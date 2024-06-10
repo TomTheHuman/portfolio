@@ -35,6 +35,7 @@ export default function Projects(): JSX.Element {
       >
         {projects.map((proj) => (
           <Project
+            key={proj.name}
             name={proj.name}
             description={proj.description}
             thumbnail={proj.thumbnail}

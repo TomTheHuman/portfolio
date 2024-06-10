@@ -2,11 +2,64 @@
 
 .root {
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
+
+  .bodyWrapper {
+    margin-left: 32px;
+    background-color: $white-opac-5;
+    backdrop-filter: blur(8px);
+    box-shadow: 0px 4px 16px $black-opac-4;
+    box-sizing: border-box;
+  }
+
+  .body {
+    padding: 24px;
+    padding-bottom: 32px;
+  }
+}
+
+.title {
+  width: fit-content;
+  position: relative;
+  padding: 8px 16px;
+  z-index: 100;
+
+  .background {
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    transition: width ease-out 500ms;
+    height: 100%;
+    z-index: -1;
+
+    &.visible {
+      width: 100%;
+    }
+
+    &.hidden {
+      width: 0;
+    }
+  }
+}
+
+.footer {
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  transition: width ease-out 500ms;
+  height: 8px;
+
+  &.visible {
+    width: 100%;
+  }
+
+  &.hidden {
+    width: 0;
+  }
 }

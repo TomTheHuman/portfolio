@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 
 // External Imports
 import {
@@ -26,9 +26,10 @@ export function NavigateLink(props: INavigateLinkProps): React.ReactElement {
     href: string,
   ) => {
     e.preventDefault();
-    const { exitAnimationsCompleted } = await snapshot.getPromise(siteNavigationState);
-    const isEmpty = Object.keys(exitAnimationsCompleted).length === 0;
+    const navState = await snapshot.getPromise(siteNavigationState);
+    if (navState.currentPath === href) return;
 
+    const isEmpty = Object.keys(navState.exitAnimationsCompleted).length === 0;
     if (isEmpty) {
       router.push(href);
     } else {
