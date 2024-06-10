@@ -6,8 +6,9 @@ import { IProject } from '../../types/mongodb';
 const portfolioProjectSchema = new mongoose.Schema<IProject>({
   name: { type: String, required: true },
   description: { type: String, required: true },
-  thumbnails: { type: [String], required: true },
-  year: { type: String, required: true },
+  thumbnail: { type: String, required: true },
+  gallery: { type: [String], required: false },
+  projectCreated: { type: Date, required: true },
   url: { type: String, required: false },
   urlLabel: { type: String, required: false },
 });
@@ -25,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       try {
         const projects = await PortfolioProject
           .find({})
-          .sort({ year: -1 });
+          .sort({ projectCreated: -1 });
         res.status(200).json({ success: true, projects });
       } catch (error) {
         res.status(400).json({ success: false, error });

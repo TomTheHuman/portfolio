@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { useRouter } from 'next/router';
 
-import Link from 'next/link';
-import { useRecoilCallback, useSetRecoilState } from 'recoil';
+import {
+  useRecoilCallback, useSetRecoilState,
+} from 'recoil';
 import sx from './Layout.module.scss';
-import { Conditional, cn } from '../../utils/Helpers';
+import { AnimatedText, Conditional, cn } from '../../utils/Helpers';
 import { themePaletteState } from '../../utils/State';
 import colorPalette from '../../utils/Palette';
+import { NavigateLink, NavigateSync } from './Navigate';
 
 interface ILayoutProps {
   children: JSX.Element | JSX.Element[];
@@ -33,7 +35,7 @@ function ContentWrapper({ children }: {
   return (
     <div className={sx.page}>
       <Conditional condition={router.pathname === '/'}>
-        <div className={sx.landing}>
+        <div key="landing" className={sx.landing}>
           {children}
         </div>
       </Conditional>
@@ -45,11 +47,18 @@ function ContentWrapper({ children }: {
       >
         <div className={sx.pageTitle}>
           <h1 className={sx.head1}>
-            {getTitle()}
+            <AnimatedText
+              key={getTitle()}
+              navKey={getTitle()}
+              text={getTitle()}
+              initial
+              exit
+              className={sx.head1}
+            />
           </h1>
           <div className={sx.underline} />
         </div>
-        <div className={sx.wrapper}>
+        <div key="wrapper" className={sx.wrapper}>
           {router.pathname !== '/' && children}
         </div>
       </div>
@@ -57,30 +66,17 @@ function ContentWrapper({ children }: {
   );
 }
 
-const StyledLink = ({ href, label }: { href: string, label: string }) => {
-  const setPalette = useSetRecoilState(themePaletteState);
-
-  const handleNextPalette = useRecoilCallback(({ snapshot }) => async () => {
-    const palette = await snapshot.getPromise(themePaletteState);
-    const last = colorPalette.length - 1;
-    const curr = colorPalette.findIndex((p) => p.primary === palette.primary);
-    const next = curr === last ? 0 : curr + 1;
-    setPalette(colorPalette[next]);
-  }, []);
-
-  return (
-    <div className={sx.styledLinkContainer}>
-      <Link
-        className={sx.body1}
-        onClick={handleNextPalette}
-        href={href}
-        prefetch
-      >
-        {label}
-      </Link>
-    </div>
-  );
-};
+const StyledLink = ({ href, label }: { href: string, label: string }) => (
+  <div className={sx.styledLinkContainer}>
+    <NavigateLink
+      className={sx.body1}
+      href={href}
+      prefetch
+    >
+      {label}
+    </NavigateLink>
+  </div>
+);
 
 function Navigation(): JSX.Element {
   return (
@@ -89,12 +85,31 @@ function Navigation(): JSX.Element {
       <StyledLink href="/about" label="ABOUT" />
       <StyledLink href="/projects" label="PROJECTS" />
       <StyledLink href="/contact" label="CONTACT" />
+      <NavigateSync />
     </div>
   );
 }
 
 export default function Layout(props: ILayoutProps): JSX.Element {
   const { children } = props;
+  const router = useRouter();
+  const pathRef = useRef<string>(router.pathname);
+
+  const setPalette = useSetRecoilState(themePaletteState);
+
+  const useNextPalette = useRecoilCallback(({ snapshot }) => async () => {
+    const palette = await snapshot.getPromise(themePaletteState);
+    const last = colorPalette.length - 1;
+    const curr = colorPalette.findIndex((p) => p.primary === palette.primary);
+    const next = curr === last ? 0 : curr + 1;
+    setPalette(colorPalette[next]);
+  }, []);
+
+  useEffect(() => {
+    if (router.pathname !== pathRef.current) {
+      useNextPalette();
+    }
+  }, [router.pathname]);
 
   return (
     <div className={sx.root}>

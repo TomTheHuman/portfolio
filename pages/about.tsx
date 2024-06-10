@@ -7,7 +7,7 @@ export default function About(): JSX.Element {
   return (
     <div className={sx.content}>
       {about.map((section) => (
-        <div className={sx.section}>
+        <div key={section.title} className={sx.section}>
           <h3 className={sx.head3}>{section.title}</h3>
           <p className={sx.body1}>{section.body}</p>
         </div>
