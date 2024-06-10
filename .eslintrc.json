@@ -46,6 +46,8 @@
     "linebreak-style": "off",
     "react/no-unknown-property": 0,
     "react/jsx-no-useless-fragment": 0,
-    "react/function-component-definition": 0
+    "react/function-component-definition": 0,
+    "react/destructuring-assignment": 0,
+    "@typescript-eslint/no-non-null-assertion": 0
   }
 }

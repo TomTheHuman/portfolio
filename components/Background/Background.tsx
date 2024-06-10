@@ -80,6 +80,7 @@ function Box(props: IGridCellProps): React.ReactElement {
         ref={ref}
         {...meshProps}
         rotation={[-Math.PI / 2, 0, 0]}
+        scale={1.5}
       >
         <meshStandardMaterial ref={matRef} {...matProps} />
       </mesh>

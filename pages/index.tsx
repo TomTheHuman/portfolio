@@ -1,17 +1,25 @@
 import React from 'react';
 
 import sx from '../styles/index.module.scss';
+import { AnimatedText, cn } from '../utils/Helpers';
 
 export default function Landing(): JSX.Element {
   return (
     <div className={sx.root}>
       <div className={sx.wrapper}>
         <p className={sx.subtitle1}>
-          Hi. My name is
+          Hello. My name is
         </p>
-        <h1 className={sx.head1}>THOMAS SHAW</h1>
+        <AnimatedText
+          key="landingFullName"
+          navKey="landingFullName"
+          text="THOMAS SHAW"
+          initial
+          exit
+          className={cn(sx.head1, sx.text)}
+        />
         <br />
-        <p className={sx.subtitle1}>
+        <p className={(sx.subtitle1)}>
           Welcome to my development portfolio.
         </p>
       </div>

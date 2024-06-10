@@ -6,6 +6,38 @@
   display: flex;
   position: relative;
   box-sizing: border-box;
+
+  &.loading {
+    .textContainer {
+      .name {
+        background-color: $black-opac-2;
+      }
+
+      .detailsContainer {
+        background-color: $white-opac-3;
+        box-shadow: unset;
+      }
+
+      .description {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .placeholder {
+        height: 1.2em;
+        width: 100%;
+        background-color: $black-opac-2;
+      }
+
+      .created {
+        width: 120px;
+        height: 1.2em;
+        padding: 4px 16px;
+        background-color: $black-opac-2;
+      }
+    }
+  }
 }
 
 .imageContainer {
@@ -54,6 +86,21 @@
     .icon {
       font-size: 3em;
       color: $white-opac-6;
+    }
+  }
+
+  &.loading {
+    .imageWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: unset;
+      background-color: $black-opac-2;
+      box-shadow: unset;
+
+      &:hover {
+        scale: unset;
+      }
     }
   }
 }
@@ -106,7 +153,7 @@
     justify-content: flex-end;
   }
 
-  .year {
+  .created {
     font-size: 1.2em;
     font-weight: 600;
     padding: 4px 16px;
@@ -145,4 +192,28 @@ TODO
   Configure api to fetch projects from mongo
   Configure app to get project data from server
   Replace img with NextJS Ima
+**/
+
+/**
+TODO Loading State
+- Thumbnail displays loading spinner
+  - Still includes secondary color
+- Text box same white color
+  - Divs for placeholder text lines
+  - Same color on year label
+  - Div for placeholder link
+- All elements use heavy ease out cubic bez
+  - Strobe left to right
+  - Use mask to keep in sync
+**/
+
+/**
+TODO Gallery
+- Opening; projects list slides down off page
+  - Opacity transitions to 0
+  - Gallery component pops in, taking page
+- Closing; gallery component fades out
+  - Projects slide back up into view
+  - Opacity transitions to 1
+- Optional; stagger projects out/into view
 **/
