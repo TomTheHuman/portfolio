@@ -99,6 +99,10 @@ export function Project(props: IProjectProps): React.ReactElement {
     name, description, thumbnail, gallery, projectCreated, url, urlLabel,
   } = props;
 
+  if (gallery) {
+    console.log(gallery);
+  }
+
   const palette = useRecoilValue(themePaletteState);
 
   const formatDateToMonthYear = (date: Date): string => date.toLocaleDateString(
