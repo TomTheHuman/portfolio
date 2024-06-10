@@ -1,8 +1,8 @@
 import React, {
-  ReactNode, useCallback, useEffect, useRef, useState,
+  ReactNode, useEffect, useRef, useState,
 } from 'react';
 import { useRecoilState } from 'recoil';
-import { SiteNavigation, siteNavigationState } from './State';
+import { siteNavigationState } from './State';
 
 /** Concatenate class name variables */
 
