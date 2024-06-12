@@ -33,11 +33,12 @@ export default function Projects(): JSX.Element {
           <ProjectLoading />
         }
       >
-        {projects.map((proj) => (
+        {projects.map((proj, i) => (
           <Project
             key={proj.name}
             name={proj.name}
             description={proj.description}
+            index={i}
             thumbnail={proj.thumbnail}
             gallery={proj.gallery}
             projectCreated={proj.projectCreated}

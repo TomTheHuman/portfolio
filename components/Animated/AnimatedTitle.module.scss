@@ -1,0 +1,25 @@
+@import '../../styles/Styles.scss';
+
+.title {
+  width: fit-content;
+  position: relative;
+  padding: 8px 16px;
+  z-index: 100;
+
+  .background {
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    transition: width ease-out 500ms;
+    height: 100%;
+    z-index: -1;
+
+    &.visible {
+      width: 100%;
+    }
+
+    &.hidden {
+      width: 0;
+    }
+  }
+}

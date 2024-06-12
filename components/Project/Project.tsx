@@ -10,11 +10,13 @@ import { ImageShadowRegular, OpenRegular } from '@fluentui/react-icons';
 import sx from './Project.module.scss';
 import { AnimatedText, Conditional, cn } from '../../utils/Helpers';
 import { themePaletteState } from '../../utils/State';
+import AnimatedTitle from '../Animated/AnimatedTitle';
 
 interface IProjectProps {
   name: string;
   description: string;
   thumbnail: string;
+  index: number;
   gallery?: string[];
   projectCreated: Date;
   url?: string;
@@ -96,7 +98,7 @@ export const ProjectLoading = (): React.ReactElement => (
 
 export function Project(props: IProjectProps): React.ReactElement {
   const {
-    name, description, thumbnail, gallery, projectCreated, url, urlLabel,
+    name, description, index, thumbnail, gallery, projectCreated, url, urlLabel,
   } = props;
 
   if (gallery) {
@@ -119,12 +121,13 @@ export function Project(props: IProjectProps): React.ReactElement {
     <div className={sx.root}>
       <Thumbnail thumbnail={thumbnail} />
       <div className={sx.textContainer}>
-        <div
+        {/* <div
           className={sx.name}
           style={{ backgroundColor: palette.secondary }}
         >
           <h3 className={sx.head3}>{name}</h3>
-        </div>
+        </div> */}
+        <AnimatedTitle title={name} delayIndex={index} />
         <div className={sx.detailsContainer}>
           <div className={sx.description}>
             <p className={sx.body1}>{description}</p>
