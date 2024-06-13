@@ -109,7 +109,14 @@ const AnimatedTextComponent: React.FC<AnimatedTextProps> = ({
   );
 
   const findLastTrueIndex = useCallback(
-    (array: boolean[]) => array.findLastIndex((vis) => vis === true),
+    (array: boolean[]) => {
+      for (let i = array.length - 1; i >= 0; i -= 1) {
+        if (array[i] === true) {
+          return i;
+        }
+      }
+      return -1; // Return -1 if no true value is found
+    },
     [],
   );
 
