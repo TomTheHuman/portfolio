@@ -1,10 +1,113 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useRecoilValue } from 'recoil';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconDefinition, faArrowUpRightFromSquare, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+
+// Internal Imports
 import sx from '../styles/Contact.module.scss';
 import { themePaletteState } from '../utils/State';
-import { AnimatedText, cn } from '../utils/Helpers';
+import { cn } from '../utils/Helpers';
 import AnimatedTitle from '../components/Animated/AnimatedTitle';
+import { AnimatedText } from '../components/Animated/AnimatedText';
+
+interface IActionButtonProps {
+  label: string;
+  index: number;
+  icon: IconDefinition;
+}
+
+const ActionButton = (props: IActionButtonProps): React.ReactElement => {
+  const { label, index, icon } = props;
+
+  const [hover, setHover] = useState<boolean>(false);
+  const palette = useRecoilValue(themePaletteState);
+
+  const navKey = `ActionButton-${label.toUpperCase()}`;
+
+  return (
+    <button
+      type="button"
+      className={sx.action}
+      onFocus={() => {}}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      aria-label="action-link"
+    >
+      <div
+        className={sx.iconRow}
+        style={{
+          width: hover ? 'calc(100%)' : '64px',
+        }}
+      >
+        <div
+          className={sx.iconContainer}
+          style={{
+            scale: hover ? '0.8' : '1',
+            backgroundColor: hover ? 'white' : palette.secondary,
+          }}
+        >
+          <div className={cn(sx.iconWrapper, !hover ? sx.hidden : sx.visible)}>
+            <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={sx.icon} />
+          </div>
+          <div className={cn(sx.iconWrapper, hover ? sx.hidden : sx.visible)}>
+            <FontAwesomeIcon icon={icon} className={sx.icon} />
+          </div>
+        </div>
+      </div>
+      <div className={sx.labelRow}>
+        <div
+          className={cn(
+            sx.labelContainer,
+            hover ? sx.hover : sx.nohover,
+          )}
+          style={{ transform: hover ? 'translateX(0)' : 'translateX(24px)' }}
+        >
+          <div
+            style={{ zIndex: 0 }}
+            className={cn(sx.labelWrapper, !hover ? sx.hidden : sx.visible)}
+          >
+            <AnimatedText
+              initial
+              initialDelay={50}
+              className={cn(
+                sx.head3,
+                sx.smaller,
+                sx.label,
+                !hover ? sx.hidden : sx.visible,
+              )}
+              text="OPEN"
+            />
+          </div>
+          <div
+            style={{ zIndex: 10 }}
+            className={cn(sx.labelWrapper, hover ? sx.hidden : sx.visible)}
+          >
+            <AnimatedText
+              initial
+              initialDelay={200}
+              initialDuration={200}
+              exit
+              exitDelay={0}
+              className={cn(
+                sx.head3,
+                sx.smaller,
+                sx.label,
+                hover ? sx.hidden : sx.visible,
+              )}
+              navKey={navKey}
+              text={label}
+              initialStaggerDelay={200}
+              exitStaggerDelay={100}
+              staggerDelayIndex={index}
+            />
+          </div>
+        </div>
+      </div>
+    </button>
+  );
+};
 
 export default function Contact(): JSX.Element {
   const palette = useRecoilValue(themePaletteState);
@@ -23,7 +126,13 @@ export default function Contact(): JSX.Element {
           />
         </div>
         <div className={sx.body}>
-          <AnimatedTitle title="GET IN TOUCH" />
+          <AnimatedTitle
+            title="GET IN TOUCH"
+            key="getInTouch"
+            navKey="getInTouch"
+            animateText
+            exit
+          />
           <div className={sx.contact}>
             <div className={sx.column}>
               <AnimatedText
@@ -43,7 +152,7 @@ export default function Contact(): JSX.Element {
                 </p>
               </div>
             </div>
-            <div className={sx.divider} />
+            <div className={sx.divider} style={{ backgroundColor: palette.primary }} />
             <div>
               <p className={sx.body1}>
                 Thank you for stopping by. If you like what you see
@@ -52,6 +161,11 @@ export default function Contact(): JSX.Element {
             </div>
           </div>
         </div>
+      </div>
+      <div className={sx.links}>
+        <ActionButton label="linkedin" index={0} icon={faLinkedin} />
+        <ActionButton label="github" index={1} icon={faGithubSquare} />
+        <ActionButton label="email" index={2} icon={faEnvelope} />
       </div>
     </div>
   );

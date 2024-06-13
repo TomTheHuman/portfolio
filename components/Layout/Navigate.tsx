@@ -58,9 +58,6 @@ export function NavigateSync(): React.ReactElement | null {
   const [siteNav, setSiteNav] = useRecoilState(siteNavigationState);
   const canNavigate = useRecoilValue(canNavigateSelector);
 
-  console.log(siteNav);
-  console.log(canNavigate);
-
   const navigateNextPath = useRecoilCallback(({ snapshot }) => async () => {
     const { nextPath } = await snapshot.getPromise(siteNavigationState);
     router.push(nextPath);
@@ -78,7 +75,7 @@ export function NavigateSync(): React.ReactElement | null {
       }
       return { ...prev, currentPath: router.pathname };
     });
-  }, [router.pathname]);
+  }, [router.pathname, siteNav.currentPath, setSiteNav]);
 
   useEffect(() => {
     if (canNavigate) {
@@ -90,7 +87,7 @@ export function NavigateSync(): React.ReactElement | null {
       }));
       navigateNextPath();
     }
-  }, [canNavigate]);
+  }, [canNavigate, router.pathname, navigateNextPath, setSiteNav]);
 
   return null;
 }

@@ -21,6 +21,7 @@
   },
   "plugins": [
     "react",
+    "react-hooks",
     "import",
     "@typescript-eslint",
     "prettier"
@@ -48,6 +49,7 @@
     "react/jsx-no-useless-fragment": 0,
     "react/function-component-definition": 0,
     "react/destructuring-assignment": 0,
-    "@typescript-eslint/no-non-null-assertion": 0
+    "@typescript-eslint/no-non-null-assertion": 0,
+    "react-hooks/exhaustive-deps": "warn"
   }
 }

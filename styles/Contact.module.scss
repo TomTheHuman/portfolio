@@ -2,6 +2,7 @@
 
 .root {
   width: 100%;
+  gap: 32px;
 }
 
 .card {
@@ -44,9 +45,10 @@
     box-sizing: border-box;
     padding: 32px;
     z-index: 1;
-    transform: translateX(-32px);
+    transform: translateX(-24px);
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 16px;
 
     .indent {
@@ -66,13 +68,203 @@
 }
 
 .column {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
 .divider {
-  width: 100%;
+  width: 90%;
   height: 1px;
   background-color: $black-opac-4;
+  filter: brightness(80%);
 }
+
+/* Action Button */
+
+.label {
+
+  &.smaller {
+    font-size: 2em;
+  }
+}
+
+.links {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 32px 16px;
+  box-sizing: border-box;
+  gap: 16px;
+}
+
+.action {
+  flex: 1 0 260px;
+  max-width: 260px;
+  height: calc(64px + 16px);
+  border: none;
+  background-color: transparent;
+  box-sizing: border-box;
+  position: relative;
+  display: inline;
+  padding: 0;
+  display: flex;
+  cursor: pointer;
+
+  &:hover {
+    .iconContainer {
+      background-color: white;
+      .icon {
+        color: $black-opac-8;
+      }
+    }
+
+    .labelContainer {
+      background-color: $white-opac-6;
+      box-shadow: 0px 4px 8px $black-opac-2;
+    }
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 0.8;
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+    scale: 0.8;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+$hover-tx: 250ms;
+$icon-c-reg: 64px;
+$icon-c-sml: 48px;
+
+.iconRow {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; 
+  transition: width ease-in-out $hover-tx;
+}
+
+.iconContainer {
+  width: $icon-c-reg;
+  height: $icon-c-reg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition: scale ease-in-out $hover-tx,
+    background-color ease-in-out $hover-tx;
+  position: relative;
+  box-shadow: 0px 4px 8px $black-opac-2;
+  backdrop-filter: blur(8px);
+}
+
+.iconWrapper {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity ease-in-out $hover-tx,
+    scale ease-in-out $hover-tx;
+  
+  &.hidden {
+    animation: hide ease-in-out $hover-tx forwards;
+  }
+  &.visible {
+    animation: show ease-in-out $hover-tx forwards;
+  }
+
+  .icon {
+    width: 60%;
+    height: 60%;
+    transition: color ease-in-out $hover-tx,
+  }
+}
+
+.labelRow {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 64px;
+  z-index: 0;
+  max-width: 350px;
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.labelContainer {
+  width: calc(100% - 64px);
+  height: 64px;
+  z-index: -10;
+  box-sizing: content-box;
+  background-color: $white-opac-5;
+  backdrop-filter: blur(8px);
+  box-shadow: 0px 4px 8px $black-opac-2;
+  scale: 1;
+  transition: scale ease-in-out $hover-tx,
+    background-color ease-in-out $hover-tx
+    box-shadow ease-in-out $hover-tx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform ease-in-out $hover-tx;
+
+  &.hover {
+    padding-right: 32px;
+  }
+  &.nohover {
+    padding-left: 32px;
+  }
+}
+
+.labelWrapper {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 16px 0px;
+  transition: opacity ease-in-out $hover-tx,
+    scale ease-in-out $hover-tx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  
+  &.hidden {
+    animation: hide ease-in-out $hover-tx forwards;
+  }
+  &.visible {
+    animation: show ease-in-out $hover-tx forwards;
+  }
+}
+

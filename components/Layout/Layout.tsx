@@ -6,10 +6,11 @@ import {
   useRecoilCallback, useSetRecoilState,
 } from 'recoil';
 import sx from './Layout.module.scss';
-import { AnimatedText, Conditional, cn } from '../../utils/Helpers';
+import { Conditional, cn } from '../../utils/Helpers';
 import { themePaletteState } from '../../utils/State';
 import colorPalette from '../../utils/Palette';
 import { NavigateLink, NavigateSync } from './Navigate';
+import { AnimatedText } from '../Animated/AnimatedText';
 
 interface ILayoutProps {
   children: JSX.Element | JSX.Element[];

@@ -1,7 +1,8 @@
 import React from 'react';
 
 import sx from '../styles/index.module.scss';
-import { AnimatedText, cn } from '../utils/Helpers';
+import { cn } from '../utils/Helpers';
+import { AnimatedText } from '../components/Animated/AnimatedText';
 
 export default function Landing(): JSX.Element {
   return (

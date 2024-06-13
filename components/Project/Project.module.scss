@@ -40,6 +40,10 @@
   }
 }
 
+.root > *:last-child {
+  margin-bottom: 32px;
+}
+
 .imageContainer {
   width: calc(20% + 16px);
 

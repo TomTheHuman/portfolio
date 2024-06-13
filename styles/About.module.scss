@@ -24,6 +24,10 @@
   }
 }
 
+.section > *:last-child {
+  margin-bottom: 32px;
+}
+
 .title {
   width: fit-content;
   position: relative;

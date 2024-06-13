@@ -8,9 +8,10 @@ import { ImageShadowRegular, OpenRegular } from '@fluentui/react-icons';
 
 // Internal Imports
 import sx from './Project.module.scss';
-import { AnimatedText, Conditional, cn } from '../../utils/Helpers';
+import { Conditional, cn } from '../../utils/Helpers';
 import { themePaletteState } from '../../utils/State';
 import AnimatedTitle from '../Animated/AnimatedTitle';
+import { AnimatedText } from '../Animated/AnimatedText';
 
 interface IProjectProps {
   name: string;
@@ -121,13 +122,14 @@ export function Project(props: IProjectProps): React.ReactElement {
     <div className={sx.root}>
       <Thumbnail thumbnail={thumbnail} />
       <div className={sx.textContainer}>
-        {/* <div
-          className={sx.name}
-          style={{ backgroundColor: palette.secondary }}
-        >
-          <h3 className={sx.head3}>{name}</h3>
-        </div> */}
-        <AnimatedTitle title={name} delayIndex={index} />
+        <AnimatedTitle
+          title={name}
+          key={name.replace(/ /g, '')}
+          navKey={name.replace(/ /g, '')}
+          staggerDelayIndex={index}
+          animateText
+          exit
+        />
         <div className={sx.detailsContainer}>
           <div className={sx.description}>
             <p className={sx.body1}>{description}</p>
