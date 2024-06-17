@@ -16,15 +16,28 @@ interface IActionButtonProps {
   label: string;
   index: number;
   icon: IconDefinition;
+  value: string;
+  method: 'newtab' | 'email';
+  href: string;
 }
 
 const ActionButton = (props: IActionButtonProps): React.ReactElement => {
-  const { label, index, icon } = props;
+  const {
+    label, value, href, method, index, icon,
+  } = props;
 
-  const [hover, setHover] = useState<boolean>(false);
+  const [hover, setHover] = useState<boolean>(label === 'github');
   const palette = useRecoilValue(themePaletteState);
 
   const navKey = `ActionButton-${label.toUpperCase()}`;
+
+  const handleLink = (): void => {
+    if (method === 'newtab') {
+      window.open(href, '_blank');
+    } else if (method === 'email') {
+      window.open(href);
+    }
+  };
 
   return (
     <button
@@ -38,13 +51,13 @@ const ActionButton = (props: IActionButtonProps): React.ReactElement => {
       <div
         className={sx.iconRow}
         style={{
-          width: hover ? 'calc(100%)' : '64px',
+          width: hover ? 'calc(100%)' : '48px',
         }}
       >
         <div
           className={sx.iconContainer}
           style={{
-            scale: hover ? '0.8' : '1',
+            scale: hover ? '0.75' : '1',
             backgroundColor: hover ? 'white' : palette.secondary,
           }}
         >
@@ -62,11 +75,15 @@ const ActionButton = (props: IActionButtonProps): React.ReactElement => {
             sx.labelContainer,
             hover ? sx.hover : sx.nohover,
           )}
-          style={{ transform: hover ? 'translateX(0)' : 'translateX(24px)' }}
+          style={{ transform: hover ? 'translateX(0)' : 'translateX(20px)' }}
         >
           <div
             style={{ zIndex: 0 }}
-            className={cn(sx.labelWrapper, !hover ? sx.hidden : sx.visible)}
+            className={cn(
+              sx.labelWrapper,
+              !hover ? sx.hidden : sx.visible,
+              hover ? sx.hover : sx.nohover,
+            )}
           >
             <AnimatedText
               initial
@@ -81,8 +98,12 @@ const ActionButton = (props: IActionButtonProps): React.ReactElement => {
             />
           </div>
           <div
-            style={{ zIndex: 10 }}
-            className={cn(sx.labelWrapper, hover ? sx.hidden : sx.visible)}
+            style={{ zIndex: 10, filter: hover ? 'brightness(120%)' : 'unset' }}
+            className={cn(
+              sx.labelWrapper,
+              hover ? sx.hidden : sx.visible,
+              hover ? sx.hover : sx.nohover,
+            )}
           >
             <AnimatedText
               initial
@@ -102,6 +123,32 @@ const ActionButton = (props: IActionButtonProps): React.ReactElement => {
               exitStaggerDelay={100}
               staggerDelayIndex={index}
             />
+          </div>
+        </div>
+      </div>
+      <div
+        className={cn(
+          sx.labelRow,
+          sx.drawer,
+          hover ? sx.hover : sx.nohover,
+        )}
+      >
+        <div
+          className={cn(
+            sx.labelContainer,
+            hover ? sx.hover : sx.nohover,
+          )}
+          style={{ transform: hover ? 'translateX(0)' : 'translateX(20px)' }}
+        >
+          <div
+            style={{ zIndex: 0 }}
+            className={cn(
+              sx.labelWrapper,
+              !hover ? sx.hidden : sx.visible,
+              hover ? sx.hover : sx.nohover,
+            )}
+          >
+            <p className={sx.body1}>{value}</p>
           </div>
         </div>
       </div>
@@ -163,9 +210,30 @@ export default function Contact(): JSX.Element {
         </div>
       </div>
       <div className={sx.links}>
-        <ActionButton label="linkedin" index={0} icon={faLinkedin} />
-        <ActionButton label="github" index={1} icon={faGithubSquare} />
-        <ActionButton label="email" index={2} icon={faEnvelope} />
+        <ActionButton
+          label="linkedin"
+          value="linkedin.com/in/thomaslshaw"
+          href="https://www.linkedin.com/in/thomaslshaw"
+          method="newtab"
+          index={0}
+          icon={faLinkedin}
+        />
+        <ActionButton
+          label="github"
+          value="github.com/tomthehuman"
+          href="https://www.github.com/tomthehuman"
+          method="newtab"
+          index={1}
+          icon={faGithubSquare}
+        />
+        <ActionButton
+          label="email"
+          value="thomas@tomthehuman.com"
+          href="mailto:thomas@tomthehuman.com"
+          method="email"
+          index={2}
+          icon={faEnvelope}
+        />
       </div>
     </div>
   );
