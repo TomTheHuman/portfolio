@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { useRecoilValue } from 'recoil';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,6 +6,7 @@ import { IconDefinition, faArrowUpRightFromSquare, faEnvelope } from '@fortaweso
 import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 // Internal Imports
+import { CheckRegular, CheckmarkCircleRegular, ClipboardRegular } from '@fluentui/react-icons';
 import sx from '../styles/Contact.module.scss';
 import { themePaletteState } from '../utils/State';
 import { cn } from '../utils/Helpers';
@@ -26,12 +27,15 @@ const ActionButton = (props: IActionButtonProps): React.ReactElement => {
     label, value, href, method, index, icon,
   } = props;
 
-  const [hover, setHover] = useState<boolean>(label === 'github');
+  const [hover, setHover] = useState<boolean>(false);
+  const [copied, setCopied] = useState<boolean>(false);
   const palette = useRecoilValue(themePaletteState);
 
   const navKey = `ActionButton-${label.toUpperCase()}`;
 
-  const handleLink = (): void => {
+  const handleLink = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+
     if (method === 'newtab') {
       window.open(href, '_blank');
     } else if (method === 'email') {
@@ -39,27 +43,41 @@ const ActionButton = (props: IActionButtonProps): React.ReactElement => {
     }
   };
 
+  const handleCopy = useCallback((e: React.MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+
+    if (!navigator.clipboard) {
+      console.error('Clipboard API not supported');
+      return;
+    }
+    setCopied(true);
+    const copyValue = method === 'newtab' ? href : value;
+    navigator.clipboard.writeText(copyValue).catch((err) => console.error(err));
+    setTimeout(() => setCopied(false), 2000);
+  }, [href, value, method]);
+
   return (
-    <button
-      type="button"
+    <div
       className={sx.action}
       onFocus={() => {}}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      aria-label="action-link"
     >
       <div
         className={sx.iconRow}
         style={{
-          width: hover ? 'calc(100%)' : '48px',
+          width: hover ? '48px' : 'calc(100%)',
         }}
       >
-        <div
+        <button
+          type="button"
+          aria-label={`open-link-${label}`}
           className={sx.iconContainer}
           style={{
             scale: hover ? '0.75' : '1',
             backgroundColor: hover ? 'white' : palette.secondary,
           }}
+          onClick={handleLink}
         >
           <div className={cn(sx.iconWrapper, !hover ? sx.hidden : sx.visible)}>
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={sx.icon} />
@@ -67,15 +85,18 @@ const ActionButton = (props: IActionButtonProps): React.ReactElement => {
           <div className={cn(sx.iconWrapper, hover ? sx.hidden : sx.visible)}>
             <FontAwesomeIcon icon={icon} className={sx.icon} />
           </div>
-        </div>
+        </button>
       </div>
       <div className={sx.labelRow}>
-        <div
+        <button
+          type="button"
+          aria-label={`open-link-${label}`}
           className={cn(
             sx.labelContainer,
             hover ? sx.hover : sx.nohover,
           )}
           style={{ transform: hover ? 'translateX(0)' : 'translateX(20px)' }}
+          onClick={handleLink}
         >
           <div
             style={{ zIndex: 0 }}
@@ -85,20 +106,18 @@ const ActionButton = (props: IActionButtonProps): React.ReactElement => {
               hover ? sx.hover : sx.nohover,
             )}
           >
-            <AnimatedText
-              initial
-              initialDelay={50}
-              className={cn(
-                sx.head3,
-                sx.smaller,
-                sx.label,
-                !hover ? sx.hidden : sx.visible,
-              )}
-              text="OPEN"
-            />
+            <h3 className={cn(
+              sx.head3,
+              sx.smaller,
+              sx.label,
+              !hover ? sx.hidden : sx.visible,
+            )}
+            >
+              OPEN LINK
+            </h3>
           </div>
           <div
-            style={{ zIndex: 10, filter: hover ? 'brightness(120%)' : 'unset' }}
+            style={{ zIndex: 10 }}
             className={cn(
               sx.labelWrapper,
               hover ? sx.hidden : sx.visible,
@@ -124,35 +143,60 @@ const ActionButton = (props: IActionButtonProps): React.ReactElement => {
               staggerDelayIndex={index}
             />
           </div>
-        </div>
+        </button>
       </div>
       <div
         className={cn(
-          sx.labelRow,
           sx.drawer,
           hover ? sx.hover : sx.nohover,
         )}
       >
-        <div
+        <button
+          type="button"
+          aria-label={`copy-clipboard-${label}`}
           className={cn(
             sx.labelContainer,
             hover ? sx.hover : sx.nohover,
           )}
           style={{ transform: hover ? 'translateX(0)' : 'translateX(20px)' }}
+          onClick={handleCopy}
         >
           <div
             style={{ zIndex: 0 }}
             className={cn(
               sx.labelWrapper,
-              !hover ? sx.hidden : sx.visible,
+              sx.value,
+              copied ? sx.showCopied : '',
               hover ? sx.hover : sx.nohover,
             )}
           >
             <p className={sx.body1}>{value}</p>
           </div>
-        </div>
+          <div
+            style={{ zIndex: 10 }}
+            className={cn(
+              sx.labelWrapper,
+              sx.copyOverlay,
+              copied ? sx.showCopied : '',
+            )}
+          >
+            <ClipboardRegular fontSize={18} />
+            <p className={sx.body1}>Copy to Clipboard</p>
+          </div>
+          <div
+            style={{ zIndex: 15 }}
+            className={cn(
+              sx.labelWrapper,
+              sx.copiedOverlay,
+              copied ? sx.showCopied : '',
+            )}
+          >
+            <CheckmarkCircleRegular fontSize={18} />
+            <p className={sx.body1}>Copied!</p>
+          </div>
+        </button>
       </div>
-    </button>
+    </div>
   );
 };
 

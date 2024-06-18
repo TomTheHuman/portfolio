@@ -95,8 +95,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: space-between;
-  padding: 32px 8px;
+  justify-content: space-evenly;
+  padding: 32px 0px;
   box-sizing: border-box;
   gap: 16px;
 }
@@ -104,18 +104,23 @@
 $action-base-height: calc(48px + 16px);
 
 .action {
-  flex: 1 0 320px;
-  max-width: 320px;
+  flex: 1 0 300px;
+  min-width: 300px;
+  max-width: 420px;
   height: auto;
-  border: none;
-  background-color: transparent;
   box-sizing: content-box;
   position: relative;
   display: inline;
   padding: 0;
   display: flex;
   flex-direction: column;
-  cursor: pointer;
+  align-items: flex-end;
+
+  button {
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
 
   &:hover {
     .iconContainer {
@@ -130,22 +135,18 @@ $action-base-height: calc(48px + 16px);
 @keyframes hide {
   0% {
     opacity: 1;
-    scale: 1;
   }
   100% {
     opacity: 0;
-    scale: 0.8;
   }
 }
 
 @keyframes show {
   0% {
     opacity: 0;
-    scale: 0.8;
   }
   100% {
     opacity: 1;
-    scale: 1;
   }
 }
 
@@ -160,7 +161,7 @@ $row-h: 48px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: flex-end; 
+  justify-content: flex-start; 
   transition: width ease-in-out $hover-tx;
 }
 
@@ -220,7 +221,7 @@ $row-y: calc(-1 * $row-h + 16px);
 .labelContainer {
   width: calc(100% - 36px);
   height: 100%;
-  z-index: -10;
+  z-index: 5;
   box-sizing: content-box;
   background-color: $white-opac-5;
   backdrop-filter: blur(8px);
@@ -240,33 +241,51 @@ $row-y: calc(-1 * $row-h + 16px);
   &.nohover {
     padding-left: 16px;
   }
+
+  &:hover {
+    background-color: $white-opac-8;
+  }
 }
 
 .labelWrapper {
   top: 0;
-  left: 0;
+  left: 0; 
   position: absolute;
   width: 100%;
   height: 100%;
   padding: 16px 0px;
   transition: opacity ease-in-out $hover-tx,
-    scale ease-in-out $hover-tx;
+    scale ease-in-out $hover-tx,
+    padding ease-in-out $hover-tx,
+    background-color ease-in-out $hover-tx;
   display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
   
   &.hidden {
-    animation: hide ease-in-out $hover-tx forwards;
+    animation: hide ease-in-out calc($hover-tx / 2) forwards;
   }
   &.visible {
-    animation: show ease-in-out $hover-tx forwards;
+    opacity: 0;
+    animation: show ease-in-out calc($hover-tx / 2) forwards;
+    animation-delay: calc($hover-tx / 2);
   }
   &.hover {
     padding-right: 16px;
   }
   &.nohover {
     padding-left: 16px;
+  }
+}
+
+.value {
+  opacity: 0;
+  animation: show ease-in-out calc($hover-tx / 2) forwards;
+  animation-delay: calc($hover-tx / 2);
+
+  &.showCopied {
+    animation: hide ease-in-out calc($hover-tx / 2) forwards;
   }
 }
 
@@ -277,19 +296,55 @@ $row-y: calc(-1 * $row-h + 16px);
   overflow: hidden;
   margin-top: 8px;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 
   .labelWrapper {
     padding: 0;
+    top: unset;
+    bottom: 0;
+    height: 40px;
   }
 
   .labelContainer {
     height: 40px;
     width: calc(100% - 20px);
     padding: 0;
+    overflow: hidden;
   }
 
   &.hover {
     height: 40px;
     overflow: visible;
+  }
+  
+  &:hover {
+    .value {
+      animation: hide ease-in-out calc($hover-tx / 2) forwards;
+    }
+    .copyOverlay {
+      opacity: 0;
+      animation: show ease-in-out calc($hover-tx / 2) forwards;
+      animation-delay: calc($hover-tx / 2);
+
+      &.showCopied {
+        animation: hide ease-in-out calc($hover-tx / 2) forwards;
+      }
+    }
+  }
+}  
+
+.copyOverlay, .copiedOverlay {
+  gap: 8px;
+  opacity: 0;
+  animation: hide ease-in-out calc($hover-tx / 2) forwards;
+}
+
+.copiedOverlay {
+  &.showCopied {
+    opacity: 0;
+    animation: show ease-in-out calc($hover-tx / 2) forwards;
+    animation-delay: calc($hover-tx / 2);
   }
 }
