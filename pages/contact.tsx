@@ -6,7 +6,7 @@ import { IconDefinition, faArrowUpRightFromSquare, faEnvelope } from '@fortaweso
 import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 // Internal Imports
-import { CheckRegular, CheckmarkCircleRegular, ClipboardRegular } from '@fluentui/react-icons';
+import { CheckmarkCircleRegular, ClipboardRegular } from '@fluentui/react-icons';
 import sx from '../styles/Contact.module.scss';
 import { themePaletteState } from '../utils/State';
 import { cn } from '../utils/Helpers';
