@@ -3,7 +3,6 @@ import React from 'react';
 // External Imports
 import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
-import { Spinner } from '@fluentui/react-components';
 import { ImageShadowRegular, OpenRegular } from '@fluentui/react-icons';
 
 // Internal Imports
@@ -30,9 +29,7 @@ interface IThumbnailProps {
 
 const ThumbnailLoading = (): React.ReactElement => (
   <div className={cn(sx.imageContainer, sx.loading)}>
-    <div className={sx.imageWrapper}>
-      <Spinner className={sx.spinner} />
-    </div>
+    <div className={sx.imageWrapper} />
   </div>
 );
 
@@ -83,9 +80,6 @@ export const ProjectLoading = (): React.ReactElement => (
       <div className={sx.detailsContainer}>
         <div className={sx.description}>
           <span className={sx.placeholder} />
-          <span className={sx.placeholder} />
-          <span className={sx.placeholder} />
-          <span className={sx.placeholder} />
         </div>
         <div className={sx.footer}>
           <div className={sx.alignLeft}>
@@ -101,6 +95,9 @@ export function Project(props: IProjectProps): React.ReactElement {
   const {
     name, description, index, thumbnail, gallery, projectCreated, url, urlLabel,
   } = props;
+
+  const delayBase = 200;
+  const staggerDelay = 200;
 
   if (gallery) {
     console.log(gallery);
@@ -118,6 +115,8 @@ export function Project(props: IProjectProps): React.ReactElement {
 
   const formattedDate = formatDateToMonthYear(projectCreated);
 
+  const getDelay = () => delayBase + (staggerDelay * index);
+
   return (
     <div className={sx.root}>
       <Thumbnail thumbnail={thumbnail} />
@@ -130,7 +129,7 @@ export function Project(props: IProjectProps): React.ReactElement {
           animateText
           exit
         />
-        <div className={sx.detailsContainer}>
+        <div className={sx.detailsContainer} style={{ animationDelay: `${getDelay()}ms` }}>
           <div className={sx.description}>
             <p className={sx.body1}>{description}</p>
           </div>

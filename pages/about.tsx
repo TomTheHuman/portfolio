@@ -36,10 +36,18 @@ const AnimatedFooter = (props: IAnimatedFooterProps): React.ReactElement => {
 };
 
 export default function About(): JSX.Element {
+  const delayBase = 200;
+  const staggerDelay = 200;
+
+  const getDelay = (index: number) => delayBase + (staggerDelay * index);
+
   return (
     <div className={cn(sx.content, sx.root)}>
       {about.map((section, i) => (
-        <div key={section.title} className={sx.section}>
+        <div
+          key={section.title}
+          className={sx.section}
+        >
           <AnimatedTitle
             title={section.title}
             key={section.title.replace(/ /g, '')}
@@ -48,7 +56,10 @@ export default function About(): JSX.Element {
             animateText
             exit
           />
-          <div className={sx.bodyWrapper}>
+          <div
+            className={sx.bodyWrapper}
+            style={{ animationDelay: `${getDelay(i)}ms` }}
+          >
             <div className={sx.body}>
               <p className={sx.body1}>{section.body}</p>
             </div>

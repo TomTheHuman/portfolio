@@ -1,5 +1,14 @@
 @import '../../styles/Styles.scss';
 
+@keyframes loading {
+  0% {
+    background-position: 160% 0;
+  }
+  100% {
+    background-position: -40% 0;
+  }
+}
+
 .root {
   width: 100%;
   height: fit-content;
@@ -8,6 +17,7 @@
   box-sizing: border-box;
 
   &.loading {
+    animation: unset;
     .textContainer {
       .name {
         background-color: $black-opac-2;
@@ -27,6 +37,7 @@
       .placeholder {
         height: 1.2em;
         width: 100%;
+        height: 100px;
         background-color: $black-opac-2;
       }
 
@@ -35,6 +46,24 @@
         height: 1.2em;
         padding: 4px 16px;
         background-color: $black-opac-2;
+      }
+
+      .detailsContainer::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: linear-gradient(
+          90deg, 
+          $transparent 30%, 
+          $white-opac-3 50%, 
+          $transparent 70%, 
+        );
+        background-size: 200% 100%;
+        animation: loading 1.2s infinite;
       }
     }
   }
@@ -140,6 +169,8 @@
   gap: 16px;
   box-shadow: 0px 4px 16px $black-opac-4;
   box-sizing: border-box;
+  opacity: 0;
+  animation: $animate-fade-slide-in;
 }
 
 .footer {

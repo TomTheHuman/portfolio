@@ -161,6 +161,21 @@ $br-large: 16px;
   white-space: nowrap;
 }
 
+@keyframes fade-slide-in {
+  0% {
+    scale: 0.95;
+    opacity: 0;
+    transform: translateX(25px);
+  }
+  100% {
+    scale: 1;
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+$animate-fade-slide-in: fade-slide-in 300ms ease-out forwards;
+
 /* Mobile Styles */
 
 @media only screen and (max-width: $mob-width) {

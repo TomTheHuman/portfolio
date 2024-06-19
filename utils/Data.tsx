@@ -1,6 +1,6 @@
 export const about = [
   {
-    title: 'Full Stack Developer - San Francisco, CA',
+    title: 'Full Stack Developer',
     body: `With nearly three years of experience as a full-stack developer, 
       my journey into the realm of web development blends a lifelong passion for 
       creativity with a robust technical expertise. Born from a love for both art 
