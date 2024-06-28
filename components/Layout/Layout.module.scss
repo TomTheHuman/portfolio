@@ -90,3 +90,42 @@
   overflow: auto;
   margin: 4px;
 }
+
+/* Mobile Styles */
+
+@media only screen and (max-width: $mob-width) {
+
+  .navigation {
+    display: none;
+  }
+
+  .overlay {
+    height: 100%;
+    background-color: $transparent;
+  }
+
+  .pageTitle {
+    width: fit-content;
+    transform: translateY(0%);
+    padding: $space-huge 0px;
+
+  
+    .head1 {
+      padding-left: 5vw;
+      font-size: min(8vw, 8rem);
+    }
+    
+    .underline {
+      height: 2px;
+      background-color: black;
+      width: 100%;
+    }
+  }
+
+  .wrapper {
+    margin: 0;
+    background-color: $white-opac-2;
+    backdrop-filter: blur(16px);
+  }
+
+}
