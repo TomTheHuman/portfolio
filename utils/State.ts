@@ -36,6 +36,11 @@ export interface SiteNavigation {
   nextPath: string;
 }
 
+export const mobileNavOpenState = atom<boolean>({
+  key: 'mobileNavOpenState',
+  default: false,
+});
+
 export const siteNavigationState = atom<SiteNavigation>({
   key: 'siteNavigationState',
   default: {
